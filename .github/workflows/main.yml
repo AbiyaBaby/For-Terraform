@@ -1,0 +1,16 @@
+on: 
+  push: 
+    branches: main
+jobs:
+  terraform:
+    name: "Terraform Init"
+    runs-on: ubuntu-latest 
+    steps :
+      - name : "Terraform Initialization"
+        uses : AbiyaBaby/For-Terraform@main
+        with: 
+          tf_actions_version: 0.12.18
+          tf_actions_subcommand : "init"
+        
+     
+  
