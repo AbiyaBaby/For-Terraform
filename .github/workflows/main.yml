@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps :
       - name: "Checkout"
-        uses : actions/checkout@main
+        uses : actions/checkout@v2
       - name : "Terraform Initialization"
         uses : AbiyaBaby/For-Terraform@main
         with: 
