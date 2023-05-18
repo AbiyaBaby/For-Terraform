@@ -34,7 +34,7 @@ resource "newrelic_alert_condition" "alert_condition_two" {
   }
 }
 
-resource "newrelic_notification_destination" "email" {
+/*resource "newrelic_notification_destination" "email" {
   account_id = 3826874
   name = "email-example"
   type = "EMAIL"
@@ -76,7 +76,7 @@ resource "newrelic_workflow" "workflow-example" {
     channel_id = newrelic_notification_channel.email.id
   }
 }
-
+*/
 
 resource "newrelic_alert_policy" "my_second_alert_policy_name" {
     name = "My FoodMe Second Alert Policy"
@@ -96,7 +96,7 @@ resource "newrelic_alert_condition" "alert_condition_foodme" {
     time_function = "all"
   }
 }
-
+/*
 resource "newrelic_notification_destination" "email2" {
   account_id = 3826874
   name = "email-example2"
@@ -107,7 +107,7 @@ resource "newrelic_notification_destination" "email2" {
     value = "aparna@litmus7.com"
   }
 }
-resource "newrelic_notification_channel" "email2" {
+ resource "newrelic_notification_channel" "email2" {
   account_id = 3826874
   name = "email-example2"
   type = "EMAIL"
@@ -136,4 +136,4 @@ resource "newrelic_workflow" "next_workflow" {
   destination {
     channel_id = newrelic_notification_channel.email2.id
   }
-}
+}*/
