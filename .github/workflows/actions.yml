@@ -2,6 +2,9 @@ name: Terraform GitHub Actions
 on:
   - pull_request
   - push
+defaults:
+  run:
+    working-directory: terraform
 jobs:
   tf_fmt:
     name: Deploy Site
