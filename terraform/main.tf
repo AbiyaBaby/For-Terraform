@@ -5,6 +5,7 @@ provider  "newrelic" {
     region = "US"
 }
 terraform {
+  backend "http" {}
   required_providers {
     newrelic = {
       version = "~> 2.13.5"
