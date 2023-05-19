@@ -36,8 +36,8 @@ jobs:
 #         uses: hashicorp/terraform-github-actions/validate@v0.3.7
 #       - name: Upload Configuration
 #         uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
-      - name: Create Apply Run
-        uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
+#       - name: Create Apply Run
+#         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
       - name: "Run - Terraform Apply"
         run: terraform apply -input=false -auto-approve
         env:
