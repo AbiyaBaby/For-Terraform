@@ -51,12 +51,12 @@ jobs:
           NEW_RELIC_API_KEY: ${{ secrets.NEW_RELIC_API_KEY }}
 
       # Submit a comment with the plan output to the pull request
-      - name: "Run - Terraform Comment"
-        uses: actions/github-script@0.9.0
-        env:
-          STDOUT: "```${{ steps.plan.outputs.stdout }}```"
-        with:
-          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+#       - name: "Run - Terraform Comment"
+#         uses: actions/github-script@0.9.0
+#         env:
+#           STDOUT: "```${{ steps.plan.outputs.stdout }}```"
+#         with:
+#           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 #           script: |
 #             github.issues.createComment({
 #               issue_number: context.issue.number,
