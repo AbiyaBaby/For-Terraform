@@ -1,17 +1,18 @@
-terraform {
-  required_providers {
-    newrelic = {
-      version = "~> 2.13.5"
-      source  = "newrelic/newrelic"
-    }
-  }
-  required_version = ">= 0.14"
-}
 provider  "newrelic" {
     account_id = 3826874
     api_key = "NRAK-QWL46LQ9BDJ7L8P8M04MF9PR66P"
     region = "US"
 }
+terraform {
+  required_providers {
+    newrelic = {
+      version = "~> 2.13.5"
+      source = "terraform-providers/newrelic"
+    }
+  }
+  required_version = ">= 0.14"
+}
+
 resource "newrelic_alert_policy" "my_alert_policy_name" {
     name = "My FoodMe Alert Policy"
 }
