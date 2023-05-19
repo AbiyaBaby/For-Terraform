@@ -1,9 +1,3 @@
-provider  "newrelic" {
-    alias = "newrelic"
-    account_id = 3826874
-    api_key = "NRAK-QWL46LQ9BDJ7L8P8M04MF9PR66P"
-    region = "US"
-}
 terraform {
   required_version = ">= 0.14"
   required_providers {
@@ -12,9 +6,13 @@ terraform {
       source = "newrelic/newrelic"  
     }
   }
- 
 }
-
+provider  "newrelic" {
+    alias = "newrelic"
+    account_id = 3826874
+    api_key = "NRAK-QWL46LQ9BDJ7L8P8M04MF9PR66P"
+    region = "US"
+}
 resource "newrelic_alert_policy" "my_alert_policy_name" {
     name = "My FoodMe Alert Policy"
 }
