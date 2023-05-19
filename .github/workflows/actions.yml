@@ -26,6 +26,7 @@ jobs:
         env:
           NEW_RELIC_ACCOUNT_ID: ${{ secrets.NEW_RELIC_ACCOUNT_ID }}
           NEW_RELIC_API_KEY: ${{ secrets.NEW_RELIC_API_KEY }}
+          TF_ACTION_WORKING_DIR: terraform
 #       - name: Terraform Validate
 #         uses: hashicorp/terraform-github-actions/validate@v0.3.7
       - name: Terraform Apply
