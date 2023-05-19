@@ -8,7 +8,6 @@ terraform {
   }
 }
 provider  "newrelic" {
-    alias = "newrelic"
     account_id = 3826874
     api_key = "NRAK-QWL46LQ9BDJ7L8P8M04MF9PR66P"
     region = "US"
