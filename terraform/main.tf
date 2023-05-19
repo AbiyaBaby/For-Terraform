@@ -5,13 +5,14 @@ provider  "newrelic" {
     region = "US"
 }
 terraform {
+  required_version = ">= 0.14"
   required_providers {
     newrelic = {
       version = "~> 2.13.5"
       source = "newrelic/newrelic"  
     }
   }
-  required_version = ">= 0.14"
+ 
 }
 
 resource "newrelic_alert_policy" "my_alert_policy_name" {
