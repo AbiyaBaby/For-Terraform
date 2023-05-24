@@ -12,19 +12,22 @@ provider  "newrelic" {
     api_key = "NRAK-QWL46LQ9BDJ7L8P8M04MF9PR66P"
     region = "US"
 }
-terraform {
-  backend "s3" {
-    bucket = "alo-newrelic-tf-state-test"
-    key    = "alo-newrelic-tf-state-test/newrelic-state.tfstate"
-    region = "us-east-1"
-    profile = "default"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket = "alo-newrelic-tf-state-test"
+#     key    = "alo-newrelic-tf-state-test/newrelic-state.tfstate"
+#     region = "us-east-1"
+#     profile = "default"
+#   }
+# }
 data "newrelic_application" "app_name" {
   name = "FoodMe"
 }
 resource "newrelic_alert_policy" "my_alert_policy_name" {
-    name = "My FoodMe Alert Policy77"
+    name = "My FoodMe Alert Policy"
+}
+resource "newrelic_alert_policy" "my_new_alert_policy" {
+    name = "My App Policy"
 }
 resource "newrelic_alert_condition" "alert_condition_two" {
   policy_id = newrelic_alert_policy.my_alert_policy_name.id 
@@ -65,8 +68,8 @@ resource "newrelic_notification_channel" "email" {
   }
 }
 
-resource "newrelic_workflow" "workflow-example" {
-  name = "workflow-example"
+resource "newrelic_workflow" "workflow-example2" {
+  name = "workflow-example2"
   muting_rules_handling = "NOTIFY_ALL_ISSUES"
 
   issues_filter {
@@ -76,12 +79,28 @@ resource "newrelic_workflow" "workflow-example" {
     predicate {
       attribute = "labels.policyIds"
       operator = "EXACTLY_MATCHES"
-      values = [ newrelic_alert_policy.my_alert_policy_name.id ]
+      values = [ newrelic_alert_policy.my_alert_policy_name.id]
+#      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
     }
+     predicate {
+      attribute = "labels.policyIds"
+      operator = "EXACTLY_MATCHES"
+#      values = [ newrelic_alert_policy.my_alert_policy_name.id,newrelic_alert_policy.my_second_alert_policy_name.id ]
+      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
+    }
+    predicate {
+      attribute = "labels.policyIds"
+      operator = "EXACTLY_MATCHES"
+      values = [ newrelic_alert_policy.my_new_alert_policy.id ]
+    }
+
   }
 
   destination {
     channel_id = newrelic_notification_channel.email.id
+  }
+  destination {
+    channel_id = newrelic_notification_channel.email2.id
   }
 }
 
@@ -127,21 +146,21 @@ resource "newrelic_notification_destination" "email2" {
     value = "New Subject Title"
   }
 }
-resource "newrelic_workflow" "next_workflow" {
-  name = "next_workflow"
-  muting_rules_handling = "NOTIFY_ALL_ISSUES"
+# resource "newrelic_workflow" "next_workflow" {
+#   name = "next_workflow"
+#   muting_rules_handling = "NOTIFY_ALL_ISSUES"
 
-  issues_filter {
-    name = "Filter-name"
-    type = "FILTER"
+#   issues_filter {
+#     name = "Filter-name"
+#     type = "FILTER"
 
-    predicate {
-      attribute = "labels.policyIds"
-      operator = "EXACTLY_MATCHES"
-      values = [ newrelic_alert_policy.my_second_alert_policy_name.id,]
-    }
-  }
-  destination {
-    channel_id = newrelic_notification_channel.email2.id
-  }
-}
+#     predicate {
+#       attribute = "labels.policyIds"
+#       operator = "EXACTLY_MATCHES"
+#       values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
+#     }
+#   }
+#   destination {
+#     channel_id = newrelic_notification_channel.email2.id
+#   }
+# }
