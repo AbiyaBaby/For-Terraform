@@ -80,19 +80,18 @@ resource "newrelic_workflow" "workflow-example2" {
       attribute = "labels.policyIds"
       operator = "EXACTLY_MATCHES"
       values = [ newrelic_alert_policy.my_alert_policy_name.id]
-#      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
     }
-     predicate {
-      attribute = "labels.policyIds"
-      operator = "EXACTLY_MATCHES"
-#      values = [ newrelic_alert_policy.my_alert_policy_name.id,newrelic_alert_policy.my_second_alert_policy_name.id ]
-      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
-    }
-    predicate {
-      attribute = "labels.policyIds"
-      operator = "EXACTLY_MATCHES"
-      values = [ newrelic_alert_policy.my_new_alert_policy.id ]
-    }
+#      predicate {
+#       attribute = "labels.policyIds"
+#       operator = "EXACTLY_MATCHES"
+# #      values = [ newrelic_alert_policy.my_alert_policy_name.id,newrelic_alert_policy.my_second_alert_policy_name.id ]
+#       values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
+#     }
+#     predicate {
+#       attribute = "labels.policyIds"
+#       operator = "EXACTLY_MATCHES"
+#       values = [ newrelic_alert_policy.my_new_alert_policy.id ]
+#     }
 
   }
 
