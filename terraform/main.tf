@@ -12,14 +12,14 @@ provider  "newrelic" {
     api_key = "NRAK-QWL46LQ9BDJ7L8P8M04MF9PR66P"
     region = "US"
 }
-terraform {
-  backend "s3" {
-    bucket = "alo-newrelic-tf-state-test"
-    key    = "alo-newrelic-tf-state-test/newrelic-state.tfstate"
-    region = "us-east-1"
-    profile = "default"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket = "alo-newrelic-tf-state-test"
+#     key    = "alo-newrelic-tf-state-test/newrelic-state.tfstate"
+#     region = "us-east-1"
+#     profile = "default"
+#   }
+# }
 data "newrelic_application" "app_name" {
   name = "FoodMe"
 }
