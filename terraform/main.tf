@@ -138,7 +138,7 @@ resource "newrelic_workflow" "next_workflow" {
     predicate {
       attribute = "labels.policyIds"
       operator = "EXACTLY_MATCHES"
-      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
+      values = [ newrelic_alert_policy.my_second_alert_policy_name.id,]
     }
   }
   destination {
