@@ -68,39 +68,8 @@ resource "newrelic_notification_channel" "email" {
   }
 }
 
-resource "newrelic_workflow" "workflow-example2" {
-  name = "workflow-example2"
-  muting_rules_handling = "NOTIFY_ALL_ISSUES"
 
-  issues_filter {
-    name = "Filter-name"
-    type = "FILTER"
 
-    predicate {
-      attribute = "labels.policyIds"
-      operator = "EXACTLY_MATCHES"
-      values = [ newrelic_alert_policy.my_alert_policy_name.id]
-    }
-     predicate {
-      attribute = "labels.policyIds"
-      operator = "EXACTLY_MATCHES"
-      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
-    }
-    predicate {
-#       attribute = "labels.policyIds"
-#       operator = "EXACTLY_MATCHES"
-#       values = [ newrelic_alert_policy.my_new_alert_policy.id ]
-#     }
-
-  }
-
-  destination {
-    channel_id = newrelic_notification_channel.email.id
-  }
-  destination {
-    channel_id = newrelic_notification_channel.email2.id
-  }
-}
 
 
 resource "newrelic_alert_policy" "my_second_alert_policy_name" {
@@ -162,3 +131,24 @@ resource "newrelic_notification_destination" "email2" {
 #     channel_id = newrelic_notification_channel.email2.id
 #   }
 # }
+resource "newrelic_workflow" "workflow-example2" {
+  name = "workflow-example2"
+  muting_rules_handling = "NOTIFY_ALL_ISSUES"
+
+  issues_filter {
+    name = "Filter-name"
+    type = "FILTER"
+
+    predicate {
+      attribute = "labels.policyIds"
+      operator = "EXACTLY_MATCHES"
+      values = [ newrelic_alert_policy.my_alert_policy_name.id,newrelic_alert_policy.my_second_alert_policy_name.id]
+    }
+  }
+    destination {
+    channel_id = newrelic_notification_channel.email.id
+  }
+  destination {
+    channel_id = newrelic_notification_channel.email2.id
+  }
+}
