@@ -81,13 +81,12 @@ resource "newrelic_workflow" "workflow-example2" {
       operator = "EXACTLY_MATCHES"
       values = [ newrelic_alert_policy.my_alert_policy_name.id]
     }
-#      predicate {
-#       attribute = "labels.policyIds"
-#       operator = "EXACTLY_MATCHES"
-# #      values = [ newrelic_alert_policy.my_alert_policy_name.id,newrelic_alert_policy.my_second_alert_policy_name.id ]
-#       values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
-#     }
-#     predicate {
+     predicate {
+      attribute = "labels.policyIds"
+      operator = "EXACTLY_MATCHES"
+      values = [ newrelic_alert_policy.my_second_alert_policy_name.id ]
+    }
+    predicate {
 #       attribute = "labels.policyIds"
 #       operator = "EXACTLY_MATCHES"
 #       values = [ newrelic_alert_policy.my_new_alert_policy.id ]
